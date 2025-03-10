@@ -61,6 +61,18 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
         }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li::before {
+            content: "\2022";
+            color: #00bcd4;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
     </style>
 </head>
 <body>
@@ -89,6 +101,16 @@
             <ul>
                 <li>Mulot</li>
                 <li>Processus</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h2>Features</h2>
+            <p>Plongez dans un monde où l'illégalité rencontre l'audace ! Oserez-vous devenir un baron de la drogue, un criminel notoire ou un stratège de l'ombre ?</p>
+            <ul>
+                <li>Meth - Produisez et vendez votre propre méthamphétamine.</li>
+                <li>Cannabis - Cultivez et distribuez du cannabis en toute discrétion.</li>
+                <li>Terroriste - Faites trembler la ville avec des actes de chaos.</li>
+                <li>Proxénète - Gérez un business clandestin et contrôlez la rue.</li>
             </ul>
         </div>
     </div>
