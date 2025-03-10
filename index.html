@@ -66,28 +66,29 @@
             border: 1px solid #00ff00;
             box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.2);
         }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li::before {
+            content: "\2726";
+            font-size: 1.2em;
+            color: #00ff00;
+            margin-right: 8px;
+        }
         .leaf {
             position: fixed;
-            width: 80px;
+            width: 50px;
+            height: 50px;
+            background: url('image.png') no-repeat center;
+            background-size: contain;
             opacity: 0.7;
-        }
-        .leaf.left {
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%) rotate(-20deg);
-        }
-        .leaf.right {
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%) rotate(20deg);
         }
     </style>
 </head>
 <body>
     <div class="background" id="bg"></div>
     <div class="overlay"></div>
-    <img src="image.png" class="leaf left" alt="Cannabis Leaf">
-    <img src="image.png" class="leaf right" alt="Cannabis Leaf">
     <div class="container">
         <div class="box">
             <h1>Bienvenue sur <span id="server-name">STRONG RP</span> !</h1>
@@ -114,7 +115,7 @@
         </div>
         <div class="box">
             <h2>Features</h2>
-            <p>Des métiers exclusifs vous attendent ! Plongez dans un monde où l'illégalité rencontre l'audace ! Oserez-vous devenir un baron de la drogue, un criminel notoire ou un stratège de l'ombre ?</p>
+            <p>Des métiers exclusifs vous attendent ! Plongez dans un monde où l'illégalité rencontre l'audace !</p>
             <ul>
                 <li>Meth - Produisez et vendez votre propre méthamphétamine.</li>
                 <li>Cannabis - Cultivez et distribuez du cannabis en toute discrétion.</li>
@@ -127,10 +128,7 @@
         <source src="musique.mp3" type="audio/mpeg">
     </audio>
     <script>
-        const images = [
-            'background1.jpg', 'background2.jpg', 'background3.jpg', 
-            'background4.jpg', 'background5.jpg', 'background6.jpg', 'background7.jpg'
-        ];
+        const images = ['background1.jpg', 'background2.jpg', 'background3.jpg'];
         let index = 0;
         function changeBackground() {
             document.getElementById('bg').style.backgroundImage = `url(${images[index]})`;
@@ -139,7 +137,6 @@
         setInterval(changeBackground, 5000);
         changeBackground();
         
-        // Étapes de chargement façon Garry's Mod
         const loadingSteps = [
             "Connexion au serveur...",
             "Envoi des informations client...",
@@ -163,6 +160,19 @@
             }
         }
         updateProgress();
+        
+        function addLeaves() {
+            for (let i = 0; i < 8; i++) {
+                let leaf = document.createElement("div");
+                leaf.classList.add("leaf");
+                leaf.style.width = `${30 + Math.random() * 50}px`;
+                leaf.style.height = leaf.style.width;
+                leaf.style.top = `${Math.random() * 100}%`;
+                leaf.style.left = `${Math.random() * 100}%`;
+                document.body.appendChild(leaf);
+            }
+        }
+        addLeaves();
     </script>
 </body>
 </html>
