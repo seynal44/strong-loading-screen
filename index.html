@@ -8,8 +8,9 @@
         body {
             margin: 0;
             padding: 0;
-            background: url('https://your-image-url.com/background.jpg') no-repeat center center fixed;
             background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
             text-align: center;
             font-family: Arial, sans-serif;
@@ -27,14 +28,31 @@
             font-size: 1.5em;
         }
     </style>
+    <script>
+        // Liste des images de fond
+        const backgrounds = [
+            "https://raw.githubusercontent.com/seynal44/strong-loading-screen/main/background1.jpg",
+            "https://raw.githubusercontent.com/seynal44/strong-loading-screen/main/background2.jpg",
+            "https://raw.githubusercontent.com/seynal44/strong-loading-screen/main/background3.jpg",
+            "https://raw.githubusercontent.com/seynal44/strong-loading-screen/main/background4.jpg",
+            "https://raw.githubusercontent.com/seynal44/strong-loading-screen/main/background5.jpg",
+            "https://raw.githubusercontent.com/seynal44/strong-loading-screen/main/background6.jpg",
+            "https://raw.githubusercontent.com/seynal44/strong-loading-screen/main/background7.jpg"
+        ];
+
+        // Choisir une image aléatoire
+        const randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+
+        // Appliquer l'image en arrière-plan
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.backgroundImage = `url('${randomBackground}')`;
+        });
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>Bienvenue sur le serveur !</h1>
         <p>Chargement en cours...</p>
     </div>
-    <audio autoplay loop>
-        <source src="https://your-music-url.com/music.mp3" type="audio/mpeg">
-    </audio>
 </body>
 </html>
