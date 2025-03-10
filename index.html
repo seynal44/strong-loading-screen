@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chargement...</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+        
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Reggae One', cursive;
             color: white;
             text-align: center;
             overflow: hidden;
@@ -83,6 +85,16 @@
             background: url('image.png') no-repeat center;
             background-size: contain;
             opacity: 0.7;
+            transform: rotate(calc(360deg * var(--rotation)));
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from {
+                transform: translateY(-10%) rotate(calc(360deg * var(--rotation)));
+            }
+            to {
+                transform: translateY(110vh) rotate(calc(360deg * var(--rotation)));
+            }
         }
     </style>
 </head>
@@ -138,38 +150,16 @@
         setInterval(changeBackground, 5000);
         changeBackground();
         
-        const loadingSteps = [
-            "Connexion au serveur...",
-            "Envoi des informations client...",
-            "Téléchargement des addons...",
-            "Montage du contenu...",
-            "Chargement des scripts Lua...",
-            "Chargement des textures et modèles...",
-            "Initialisation des entités...",
-            "Connexion terminée !"
-        ];
-        let progress = 0;
-        let stepIndex = 0;
-        function updateProgress() {
-            if (progress < 100) {
-                progress += Math.floor(Math.random() * 15) + 5;
-                if (progress > 100) progress = 100;
-                document.getElementById('progress').style.width = progress + '%';
-                document.getElementById('loading-text').textContent = loadingSteps[stepIndex];
-                if (stepIndex < loadingSteps.length - 1) stepIndex++;
-                setTimeout(updateProgress, 1000);
-            }
-        }
-        updateProgress();
-        
         function addLeaves() {
             for (let i = 0; i < 8; i++) {
                 let leaf = document.createElement("div");
                 leaf.classList.add("leaf");
+                leaf.style.setProperty('--rotation', Math.random());
                 leaf.style.width = `${30 + Math.random() * 50}px`;
                 leaf.style.height = leaf.style.width;
-                leaf.style.top = `${Math.random() * 100}%`;
+                leaf.style.top = "-10%";
                 leaf.style.left = `${Math.random() * 100}%`;
+                leaf.style.animationDuration = `${5 + Math.random() * 10}s`;
                 document.body.appendChild(leaf);
             }
         }
