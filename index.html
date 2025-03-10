@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chargement...</title>
-    <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Reggae+One&display=swap');
+
         body {
             margin: 0;
             padding: 0;
@@ -67,23 +68,6 @@
             border: 1px solid #00ff00;
             box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.2);
         }
-        h2 {
-            font-size: 1.8em;
-            text-transform: uppercase;
-        }
-        @keyframes rainbow {
-            0% { color: red; }
-            14% { color: orange; }
-            28% { color: yellow; }
-            42% { color: green; }
-            57% { color: blue; }
-            71% { color: indigo; }
-            85% { color: violet; }
-            100% { color: red; }
-        }
-        .rainbow-text {
-            animation: rainbow 3s infinite linear;
-        }
         ul {
             list-style: none;
             padding: 0;
@@ -94,6 +78,18 @@
             color: #00ff00;
             margin-right: 8px;
         }
+        @keyframes rainbow {
+            0% { color: red; }
+            16% { color: orange; }
+            33% { color: yellow; }
+            50% { color: green; }
+            66% { color: blue; }
+            83% { color: indigo; }
+            100% { color: violet; }
+        }
+        .rainbow {
+            animation: rainbow 2s infinite linear;
+        }
         .leaf {
             position: fixed;
             width: 50px;
@@ -101,12 +97,11 @@
             background: url('image.png') no-repeat center;
             background-size: contain;
             opacity: 0.7;
-            animation: floatLeaf 5s linear infinite;
+            animation: fall linear infinite;
         }
-        @keyframes floatLeaf {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-            100% { transform: translateY(0px) rotate(360deg); }
+        @keyframes fall {
+            from { transform: translateY(-100px) rotate(0deg); }
+            to { transform: translateY(100vh) rotate(360deg); }
         }
     </style>
 </head>
@@ -122,7 +117,7 @@
             </div>
         </div>
         <div class="box">
-            <h2 class="rainbow-text">Règles du serveur</h2>
+            <h2 class="rainbow">RÈGLES DU SERVEUR</h2>
             <ul>
                 <li>Respectez les autres joueurs mais pas trop non plus</li>
                 <li>Ne spammez pas le chat</li>
@@ -131,20 +126,23 @@
             </ul>
         </div>
         <div class="box">
-            <h2 class="rainbow-text">Admins</h2>
+            <h2 class="rainbow">ADMINS</h2>
             <ul>
                 <li>Mulot</li>
                 <li>Processus</li>
             </ul>
         </div>
         <div class="box">
-            <h2 class="rainbow-text">Features</h2>
+            <h2 class="rainbow">FEATURES</h2>
             <p>Des métiers exclusifs vous attendent ! Plongez dans un monde où l'illégalité rencontre l'audace !</p>
+            <ul>
+                <li>Meth - Produisez et vendez votre propre méthamphétamine.</li>
+                <li>Cannabis - Cultivez et distribuez du cannabis en toute discrétion.</li>
+                <li>Terroriste - Faites trembler la ville avec des actes de chaos.</li>
+                <li>Proxénète - Gérez un business clandestin et contrôlez le Catalyst.</li>
+            </ul>
         </div>
     </div>
-    <audio autoplay loop>
-        <source src="musique.mp3" type="audio/mpeg">
-    </audio>
     <script>
         const images = [ 'background1.jpg', 'background2.jpg', 'background3.jpg', 
             'background4.jpg', 'background5.jpg', 'background6.jpg', 'background7.jpg'];
@@ -155,14 +153,24 @@
         }
         setInterval(changeBackground, 5000);
         changeBackground();
+        
+        function updateProgress() {
+            let progress = 0;
+            let interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                document.getElementById('progress').style.width = progress + '%';
+                if (progress === 100) clearInterval(interval);
+            }, 1000);
+        }
+        updateProgress();
+        
         function addLeaves() {
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 10; i++) {
                 let leaf = document.createElement("div");
                 leaf.classList.add("leaf");
-                leaf.style.width = `${30 + Math.random() * 50}px`;
-                leaf.style.height = leaf.style.width;
-                leaf.style.top = `${Math.random() * 100}%`;
-                leaf.style.left = `${Math.random() * 100}%`;
+                leaf.style.left = `${Math.random() * 100}vw`;
+                leaf.style.animationDuration = `${5 + Math.random() * 5}s`;
                 document.body.appendChild(leaf);
             }
         }
