@@ -51,6 +51,19 @@
             background: #00aaff;
             transition: width 0.5s ease-in-out;
         }
+
+        .info-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .info-box {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            width: 20%;
+        }
     </style>
 </head>
 <body>
@@ -92,6 +105,33 @@
         <p>Chargement en cours...</p>
         <div class="progress-bar">
             <div class="progress"></div>
+        </div>
+        <div class="info-container">
+            <div class="info-box">
+                <h2>Dernière connexion</h2>
+                <p id="last-connection">10/03/2025</p>
+            </div>
+            <div class="info-box">
+                <h2>Heures de jeu</h2>
+                <p id="playtime">125h</p>
+            </div>
+            <div class="info-box">
+                <h2>Joueurs connectés</h2>
+                <p id="players-online">12</p>
+            </div>
+            <div class="info-box">
+                <h2>Staff en ligne</h2>
+                <p id="staff-online">2</p>
+            </div>
+            <div class="info-box">
+                <h2>Règles</h2>
+                <ul>
+                    <li>Pas d'insultes</li>
+                    <li>Respecter le staff</li>
+                    <li>Pas de triche</li>
+                    <li>Amusez-vous !</li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
