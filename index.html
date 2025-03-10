@@ -73,7 +73,7 @@
             padding: 0;
         }
         ul li::before {
-            content: "\u2726";
+            content: "\2726";
             font-size: 1.2em;
             color: #00ff00;
             margin-right: 8px;
@@ -135,16 +135,43 @@
         <div class="box">
             <h2 class="rainbow">FEATURES</h2>
             <p>Des métiers exclusifs vous attendent ! Plongez dans un monde où l'illégalité rencontre l'audace !</p>
+            <ul>
+                <li>Meth - Produisez et vendez votre propre méthamphétamine.</li>
+                <li>Cannabis - Cultivez et distribuez du cannabis en toute discrétion.</li>
+                <li>Terroriste - Faites trembler la ville avec des actes de chaos.</li>
+                <li>Proxénète - Gérez un business clandestin et contrôlez le Catalyst.</li>
+            </ul>
         </div>
     </div>
     <script>
+        const images = [ 'background1.jpg', 'background2.jpg', 'background3.jpg', 
+            'background4.jpg', 'background5.jpg', 'background6.jpg', 'background7.jpg'];
+        let index = 0;
+        function changeBackground() {
+            document.getElementById('bg').style.backgroundImage = `url(${images[index]})`;
+            index = (index + 1) % images.length;
+        }
+        setInterval(changeBackground, 5000);
+        changeBackground();
+        
+        function updateProgress() {
+            let progress = 0;
+            let interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                document.getElementById('progress').style.width = progress + '%';
+                if (progress === 100) clearInterval(interval);
+            }, 1000);
+        }
+        updateProgress();
+        
         function addLeaves() {
-            for (let i = 0; i < 10; i++) {
-                let leaf = document.createElement("div");
-                leaf.classList.add("leaf");
-                leaf.style.left = `${Math.random() * 100}vw`;
-                leaf.style.animationDuration = `${5 + Math.random() * 5}s`;
-                document.body.appendChild(leaf);
+        for (let i = 0; i < 10; i++) {
+            let leaf = document.createElement("div");
+            leaf.classList.add("leaf");
+            leaf.style.left = `${10 + Math.random() * 80}vw`; // Répartition plus uniforme sur l'écran
+            leaf.style.animationDuration = `${5 + Math.random() * 5}s`;
+            document.body.appendChild(leaf);
             }
         }
         addLeaves();
