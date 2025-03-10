@@ -81,11 +81,10 @@
     <div class="container">
         <div class="box">
             <h1>Bienvenue sur <span id="server-name">STRONG RP</span> !</h1>
-            <p>Chargement en cours...</p>
+            <p id="loading-text">Initialisation...</p>
             <div class="loading-bar">
                 <div class="loading-progress" id="progress"></div>
             </div>
-            <p id="loading-text">0%</p>
         </div>
         <div class="box">
             <h2>Règles du serveur</h2>
@@ -130,15 +129,27 @@
         setInterval(changeBackground, 5000);
         changeBackground();
         
-        // Simulation de chargement progressif
+        // Étapes de chargement façon Garry's Mod
+        const loadingSteps = [
+            "Client Info envoyé...",
+            "Connexion au serveur...",
+            "Téléchargement des addons...",
+            "Vérification des fichiers...",
+            "Chargement des scripts Lua...",
+            "Chargement des textures...",
+            "Finalisation...",
+            "Connexion terminée !"
+        ];
         let progress = 0;
+        let stepIndex = 0;
         function updateProgress() {
             if (progress < 100) {
-                progress += Math.floor(Math.random() * 10) + 5;
+                progress += Math.floor(Math.random() * 15) + 5;
                 if (progress > 100) progress = 100;
                 document.getElementById('progress').style.width = progress + '%';
-                document.getElementById('loading-text').textContent = progress + '%';
-                setTimeout(updateProgress, 500);
+                document.getElementById('loading-text').textContent = loadingSteps[stepIndex];
+                if (stepIndex < loadingSteps.length - 1) stepIndex++;
+                setTimeout(updateProgress, 1000);
             }
         }
         updateProgress();
