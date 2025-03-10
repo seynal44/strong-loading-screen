@@ -41,20 +41,6 @@
             border-radius: 10px;
             margin-bottom: 15px;
         }
-        .loading-bar {
-            width: 100%;
-            height: 10px;
-            background: #333;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-        .loading-bar div {
-            height: 100%;
-            width: 0;
-            background: #00aaff;
-            transition: width 1s;
-        }
     </style>
 </head>
 <body>
@@ -62,30 +48,24 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="box">
-            <h1>Bienvenue <span id="player-name">Joueur</span> sur le serveur !</h1>
+            <h1>Bienvenue sur <span id="server-name">STRONG RP</span> !</h1>
             <p>Chargement en cours...</p>
-            <div class="loading-bar"><div id="progress"></div></div>
-        </div>
-        <div class="box">
-            <h2>Votre activité</h2>
-            <p>Dernière connexion : <span id="last-connection">-</span></p>
-            <p>Heures de jeu : <span id="hours-played">-</span></p>
-        </div>
-        <div class="box">
-            <h2>Joueurs connectés</h2>
-            <p><span id="players-online">0</span> joueurs en ligne</p>
-        </div>
-        <div class="box">
-            <h2>Staff en ligne</h2>
-            <p id="staff-online">Chargement...</p>
         </div>
         <div class="box">
             <h2>Règles du serveur</h2>
             <ul>
-                <li>Respectez les autres joueurs</li>
+                <li>Respectez les autres joueurs mais pas trop</li>
                 <li>Ne spammez pas le chat</li>
                 <li>Écoutez les membres du staff</li>
                 <li>Amusez-vous !</li>
+            </ul>
+        </div>
+        <div class="box">
+            <h2>Admins</h2>
+            <ul>
+                <li>Admin 1</li>
+                <li>Admin 2</li>
+                <li>Admin 3</li>
             </ul>
         </div>
     </div>
@@ -104,19 +84,6 @@
         }
         setInterval(changeBackground, 5000);
         changeBackground();
-        
-        let progress = 0;
-        function updateLoadingBar() {
-            progress += 10;
-            document.getElementById('progress').style.width = progress + '%';
-            if (progress < 100) {
-                setTimeout(updateLoadingBar, 1000);
-            }
-        }
-        updateLoadingBar();
-
-        // Simulation du nom du joueur (Remplace cette ligne par l'intégration avec le serveur Garry's Mod)
-        document.getElementById('player-name').innerText = "PseudoDuJoueur";
     </script>
 </body>
 </html>
