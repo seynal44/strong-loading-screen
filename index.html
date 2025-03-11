@@ -102,7 +102,22 @@
             from { transform: translateY(-100px) rotate(0deg); }
             to { transform: translateY(100vh) rotate(360deg); }
         }
-    
+        #music-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 50, 0, 0.7);
+    padding: 10px;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+}
+#music-controls button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
     </style>
     
 </head>
@@ -110,6 +125,12 @@
     <div class="background" id="bg"></div>
     <div class="overlay"></div>
     <div class="container">
+        <audio id="background-music" autoplay loop hidden>
+    <source src="https://raw.githubusercontent.com/seynal44/strong-loading-screen/main/musique1.mp3" type="audio/mpeg">
+        </audio>
+        <div id="music-controls">
+    <button id="mute-button">🔊 Mute</button>
+        </div>
         <div class="box">
             <h1>Bienvenue sur <span id="server-name">STRONG RP</span> !</h1>
             <p id="loading-text">Initialisation...</p>
@@ -144,7 +165,6 @@
             </ul>
         </div>
     </div>
-    
     <script>
         const images = [ 'background1.png', 'background2.jpg', 'background3.jpg', 
             'background4.jpg', 'background5.jpg', 'background6.jpg', 'background7.jpg'];
@@ -178,9 +198,26 @@
         document.body.appendChild(leaf);
     }
 }
-addLeaves();
+addLeaves(); 
         
+    const audio = document.getElementById("background-music");
+    const muteButton = document.getElementById("mute-button");
 
-    </script>
+    // Vérifie si l'utilisateur doit interagir pour démarrer la musique
+    document.body.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play().catch(() => {
+                console.log("Autoplay bloqué, l'utilisateur doit interagir.");
+            });
+        }
+    }, { once: true });
+
+    // Mute / Unmute
+    muteButton.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+        muteButton.textContent = audio.muted ? "🔇 Unmute" : "🔊 Mute";
+    });
+</script>
+
 </body>
 </html>
