@@ -102,7 +102,28 @@
             from { transform: translateY(-100px) rotate(0deg); }
             to { transform: translateY(100vh) rotate(360deg); }
         }
+        /* Boutons musique */
+        #music-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0,50,0,0.7);
+            padding: 10px;
+            border: 2px solid #00ff00;
+            border-radius: 5px;
+            color: white;
+        }
 
+        #music-controls button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
     
 </head>
@@ -144,7 +165,22 @@
             </ul>
         </div>
     </div>
-      
+    <audio id="background-music" autoplay>
+        <source src="https://raw.githubusercontent.com/TON-UTILISATEUR/TON-DEPOT/main/musique1.mp3" type="audio/mpeg">
+    </audio>
+    <div id="music-controls">
+        <span id="music-title">Chargement...</span>
+        <button id="skip-button">⏭️</button>
+        <button id="mute-button">🔊 Mute</button>
+    </div>
+     <body>
+    <div class="background" id="bg"></div>
+    <div class="overlay"></div>
+    
+    <div class="container">
+        <h1>Bienvenue sur <span id="server-name">STRONG RP</span> !</h1>
+    </div>
+         
     <script>
         const images = [ 'background1.png', 'background2.jpg', 'background3.jpg', 
             'background4.jpg', 'background5.jpg', 'background6.jpg', 'background7.jpg'];
@@ -179,7 +215,37 @@
     }
 }
 addLeaves();
+        
+    const playlist = [
+        { src: "https://raw.githubusercontent.com/TON-UTILISATEUR/TON-DEPOT/main/musique1.mp3", title: "Thin Man Skank" },
+        { src: "https://raw.githubusercontent.com/TON-UTILISATEUR/TON-DEPOT/main/musique2.mp3", title: "Nine Years" },
+        { src: "https://raw.githubusercontent.com/TON-UTILISATEUR/TON-DEPOT/main/musique3.mp3", title: "Chanson 3" }
+    ];
 
+    let currentTrack = 0;
+    const audio = document.getElementById("background-music");
+    const musicTitle = document.getElementById("music-title");
+    const muteButton = document.getElementById("mute-button");
+    const skipButton = document.getElementById("skip-button");
+
+    function updateMusicInfo() {
+        audio.src = playlist[currentTrack].src;
+        musicTitle.textContent = playlist[currentTrack].title;
+        audio.play();
+    }
+
+    skipButton.addEventListener("click", () => {
+        currentTrack = (currentTrack + 1) % playlist.length;
+        updateMusicInfo();
+    });
+
+    muteButton.addEventListener("click", () => {
+        audio.muted = !audio.muted;
+        muteButton.textContent = audio.muted ? "🔇 Unmute" : "🔊 Mute";
+    });
+
+    // Lancer la première musique
+    updateMusicInfo();
 
     </script>
 </body>
